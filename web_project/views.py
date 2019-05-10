@@ -5,13 +5,14 @@ from django.template.loader import get_template
 
 def home_page(request):
     my_title = "Hello there ...."
-    # doc = "<h1>{title}</h1>".format(title=title)
-    # django_rendered_doc = "<h1>{{title}}</h1>".format(title=title)
-    return render(request, "hello_world.html", {"title": my_title})
+    context = {"title": "my title"}
+    if request.user.is_authenticated:
+        context = {"title": my_title, "my_list": [1, 2, 3, 4, 5]}
+    return render(request, "home.html", context)
 
 
 def about_page(request):
-    return render(request, "hello_world.html", {"title": "About us"})
+    return render(request, "about.html", {"title": "About us"})
 
 
 def contact_page(request):
@@ -22,4 +23,5 @@ def example_page(request):
     context = {"title": "Example"}
     template_name = "hello_world.html"
     template_obj = get_template(template_name)
-    return HttpResponse(template_obj.render(context))
+    rendered_item = template_obj.render(context)
+    return HttpResponse(rendered_item)
