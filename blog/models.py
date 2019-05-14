@@ -14,7 +14,7 @@ class BlogPostQuerySet(models.QuerySet):
 
 
 class BlogPostManager(models.Manager):
-    def get_quryset(self):
+    def get_queryset(self):
         return BlogPostQuerySet(self.model, using=self._db)
 
     def published(self):
