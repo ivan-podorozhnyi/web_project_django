@@ -4,6 +4,7 @@ from django.template.loader import get_template
 
 from .forms import ContactForm
 
+
 def home_page(request):
     my_title = "Hello there ...."
     context = {"title": "my title"}
