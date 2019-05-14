@@ -23,7 +23,7 @@ def blog_post_create_view(request):
 
 
 def blog_post_list_view(request):
-    qs = BlogPost.objects.all()
+    qs = BlogPost.objects.published()
     template_name = 'blog/list.html'
     context = {'object_list': qs}
     return render(request, template_name, context)
